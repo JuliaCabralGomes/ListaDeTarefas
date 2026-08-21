@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main>
+
+        <section class="todo-app">
+
+            <div class="app-header">
+
+                <h1>Minhas Tarefas</h1>
+
+                <span id="task-counter" class="task-counter"></span>
+
+            </div>
+
+            <form id="task-form" class="task-form">
+
+                <input
+                    type="text"
+                    id="task-input"
+                    class="task-input"
+                    placeholder="Adicionar uma nova tarefa..."
+                    autocomplete="off"
+                >
+
+                <button type="submit" class="add-button" aria-label="Adicionar tarefa">+</button>
+
+            </form>
+
+            <div id="filters" class="filters">
+
+                <button type="button" class="filter-button active" data-filter="all">Todas</button>
+                <button type="button" class="filter-button" data-filter="pending">Pendentes</button>
+                <button type="button" class="filter-button" data-filter="completed">Concluídas</button>
+
+            </div>
+
+            <ul id="task-list" class="task-list"></ul>
+
+            <p id="empty-message" class="empty-message">Nenhuma tarefa por aqui ainda.</p>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

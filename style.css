@@ -1,0 +1,383 @@
+:root {
+    --paper: #F5EFE3;
+    --card: #FFFDF8;
+    --ink: #2B2B2A;
+    --ink-soft: #6B6459;
+    --sand: #9C9284;
+    --line: #E4DCC8;
+    --sage: #6B8F71;
+    --sage-dark: #587760;
+    --terracotta: #C1666B;
+    --tape: rgba(212, 196, 122, .55);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button:focus-visible,
+.task-checkbox:focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--paper);
+    background-image: radial-gradient(circle, rgba(0,0,0,.035) 1px, transparent 1px);
+    background-size: 22px 22px;
+
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+
+    padding: 40px 20px;
+}
+
+.todo-app {
+    position: relative;
+
+    width: min(400px, 100%);
+
+    background-color: var(--card);
+
+    border-radius: 4px;
+
+    padding: 40px 30px 30px;
+
+    box-shadow: 0 18px 40px rgba(43, 43, 42, .12), 0 2px 6px rgba(43, 43, 42, .08);
+}
+
+/* Borda estilo "papel rasgado" no topo do card */
+.todo-app::before {
+    content: "";
+
+    position: absolute;
+    top: -11px;
+    left: 0;
+    right: 0;
+
+    height: 22px;
+
+    background:
+        linear-gradient(135deg, var(--card) 25%, transparent 25%) 0 0 / 18px 18px repeat-x,
+        linear-gradient(225deg, var(--card) 25%, transparent 25%) 0 0 / 18px 18px repeat-x;
+
+    filter: drop-shadow(0 -2px 3px rgba(43, 43, 42, .06));
+}
+
+/* Washi tape decorativo no canto */
+.todo-app::after {
+    content: "";
+
+    position: absolute;
+    top: -16px;
+    left: 36px;
+
+    width: 64px;
+    height: 26px;
+
+    background-color: var(--tape);
+
+    transform: rotate(-6deg);
+
+    box-shadow: 0 2px 4px rgba(43, 43, 42, .1);
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-style: italic;
+
+    color: var(--ink);
+
+    font-size: 1.7rem;
+
+    letter-spacing: -.01em;
+}
+
+.task-counter {
+    font-family: "Inter", sans-serif;
+    font-size: .78rem;
+    font-weight: 500;
+
+    color: var(--sage-dark);
+
+    background-color: rgba(107, 143, 113, .12);
+
+    padding: 4px 10px;
+
+    border-radius: 20px;
+
+    white-space: nowrap;
+}
+
+.task-form {
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 24px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px dashed var(--line);
+}
+
+.task-input {
+    flex: 1;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    background-color: var(--paper);
+
+    color: var(--ink);
+
+    font-family: "Inter", sans-serif;
+    font-size: .95rem;
+}
+
+.task-input::placeholder {
+    color: var(--sand);
+}
+
+.task-input:focus {
+    outline: none;
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(107, 143, 113, .15);
+}
+
+.add-button {
+    width: 44px;
+
+    border: none;
+    border-radius: 4px;
+
+    background-color: var(--sage);
+
+    color: #FFFFFF;
+
+    font-size: 1.3rem;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: .18s ease;
+}
+
+.add-button:hover {
+    background-color: var(--sage-dark);
+}
+
+.add-button:active {
+    transform: scale(.94);
+}
+
+.filters {
+    display: flex;
+
+    gap: 6px;
+
+    margin-bottom: 18px;
+}
+
+.filter-button {
+    border: 1px solid var(--line);
+    border-radius: 20px;
+
+    background-color: transparent;
+
+    color: var(--ink-soft);
+
+    font-family: "Inter", sans-serif;
+    font-size: .8rem;
+    font-weight: 500;
+
+    padding: 6px 14px;
+
+    cursor: pointer;
+
+    transition: .18s ease;
+}
+
+.filter-button:hover {
+    border-color: var(--sage);
+    color: var(--sage-dark);
+}
+
+.filter-button.active {
+    background-color: var(--sage);
+    border-color: var(--sage);
+
+    color: #FFFFFF;
+}
+
+.task-list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    max-height: 340px;
+
+    overflow-y: auto;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 4px;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-checkbox {
+    appearance: none;
+
+    width: 19px;
+    height: 19px;
+
+    border: 1.5px solid var(--sand);
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    transition: .15s ease;
+}
+
+.task-checkbox:hover {
+    border-color: var(--sage);
+}
+
+.task-checkbox:checked {
+    background-color: var(--sage);
+    border-color: var(--sage);
+}
+
+.task-checkbox:checked::after {
+    content: "✓";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -58%);
+
+    color: #FFFFFF;
+    font-size: .75rem;
+    font-weight: 700;
+}
+
+.task-text {
+    flex: 1;
+
+    color: var(--ink);
+
+    font-size: .97rem;
+
+    word-break: break-word;
+
+    cursor: text;
+}
+
+.task-edit-input {
+    flex: 1;
+
+    padding: 4px 6px;
+
+    border: none;
+    border-bottom: 1.5px solid var(--sage);
+    border-radius: 2px;
+
+    background-color: var(--paper);
+
+    color: var(--ink);
+
+    font-family: "Inter", sans-serif;
+    font-size: .97rem;
+}
+
+.task-edit-input:focus {
+    outline: none;
+}
+
+.task-item.completed .task-text {
+    color: var(--sand);
+
+    text-decoration: line-through;
+    text-decoration-color: var(--sand);
+}
+
+.delete-button {
+    border: none;
+
+    background: transparent;
+
+    color: var(--sand);
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition: .18s ease;
+}
+
+.delete-button:hover {
+    color: var(--terracotta);
+}
+
+.empty-message {
+    color: var(--sand);
+
+    font-family: "Fraunces", serif;
+    font-style: italic;
+
+    font-size: .95rem;
+
+    text-align: center;
+
+    margin-top: 20px;
+}
+
+.empty-message.hidden {
+    display: none;
+}
+
+.task-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+    background-color: var(--line);
+    border-radius: 10px;
+}
