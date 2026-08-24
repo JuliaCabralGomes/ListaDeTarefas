@@ -1,6 +1,8 @@
 :root {
-    --paper: #F5EFE3;
-    --card: #FFFDF8;
+    --bg: #2E2A24;
+    --bg-dot: rgba(255, 255, 255, .04);
+    --paper-light: #F5EFE3;
+    --card: #FBF6EC;
     --ink: #2B2B2A;
     --ink-soft: #6B6459;
     --sand: #9C9284;
@@ -8,7 +10,7 @@
     --sage: #6B8F71;
     --sage-dark: #587760;
     --terracotta: #C1666B;
-    --tape: rgba(212, 196, 122, .55);
+    --tape: rgba(212, 196, 122, .65);
 }
 
 * {
@@ -29,8 +31,8 @@ body {
     justify-content: center;
     align-items: center;
 
-    background-color: var(--paper);
-    background-image: radial-gradient(circle, rgba(0,0,0,.035) 1px, transparent 1px);
+    background-color: var(--bg);
+    background-image: radial-gradient(circle, var(--bg-dot) 1px, transparent 1px);
     background-size: 22px 22px;
 
     font-family: "Inter", Arial, Helvetica, sans-serif;
@@ -49,7 +51,7 @@ body {
 
     padding: 40px 30px 30px;
 
-    box-shadow: 0 18px 40px rgba(43, 43, 42, .12), 0 2px 6px rgba(43, 43, 42, .08);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, .4), 0 4px 12px rgba(0, 0, 0, .25);
 }
 
 /* Borda estilo "papel rasgado" no topo do card */
@@ -144,7 +146,7 @@ h1 {
     border: 1px solid var(--line);
     border-radius: 4px;
 
-    background-color: var(--paper);
+    background-color: var(--paper-light);
 
     color: var(--ink);
 
@@ -317,7 +319,7 @@ h1 {
     border-bottom: 1.5px solid var(--sage);
     border-radius: 2px;
 
-    background-color: var(--paper);
+    background-color: var(--paper-light);
 
     color: var(--ink);
 
